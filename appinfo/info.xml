@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<info xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:noNamespaceSchemaLocation="https://apps.nextcloud.com/schema/apps/info.xsd">
+	<id>ldap_quota_writeback</id>
+	<name>LDAP Quota Writeback</name>
+	<summary>Schreibt in Nextcloud geänderte Quotas zurück ins LDAP</summary>
+	<description><![CDATA[Wenn die LDAP/AD-Integration die Quota aus einem LDAP-Attribut liest (Kontingent-Feld), überschreibt der LDAP-Abgleich jede Quota, die in der Nextcloud-Benutzerverwaltung gesetzt wird.
+
+Diese App schreibt Quota-Änderungen von LDAP-Benutzern in genau dieses LDAP-Attribut zurück. LDAP bleibt damit die Quelle der Wahrheit, und Änderungen in der Oberfläche bleiben erhalten.
+
+- "Standard-Kontingent" in Nextcloud entfernt den individuellen Wert im LDAP (dann gilt das LDAP-Standardkontingent).
+- "Unbegrenzt" wird als "none" ins LDAP geschrieben.
+- Lokale (nicht-LDAP) Benutzer werden nicht angefasst.]]></description>
+	<version>1.0.0</version>
+	<licence>agpl</licence>
+	<author>FFF-Cloud Administration</author>
+	<namespace>LdapQuotaWriteback</namespace>
+	<category>integration</category>
+	<dependencies>
+		<lib>ldap</lib>
+		<!-- Bewusst keine echte Obergrenze: die App soll Upgrades überstehen (siehe README) -->
+		<nextcloud min-version="30" max-version="99"/>
+	</dependencies>
+	<commands>
+		<command>OCA\LdapQuotaWriteback\Command\Show</command>
+		<command>OCA\LdapQuotaWriteback\Command\Set</command>
+	</commands>
+</info>
