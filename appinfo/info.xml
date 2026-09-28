@@ -11,7 +11,7 @@ Diese App schreibt Quota-Änderungen von LDAP-Benutzern in genau dieses LDAP-Att
 - "Standard-Kontingent" in Nextcloud entfernt den individuellen Wert im LDAP (dann gilt das LDAP-Standardkontingent).
 - "Unbegrenzt" wird als "none" ins LDAP geschrieben.
 - Lokale (nicht-LDAP) Benutzer werden nicht angefasst.]]></description>
-	<version>1.0.0</version>
+	<version>1.0.1</version>
 	<licence>agpl</licence>
 	<author>FFF-Cloud Administration</author>
 	<namespace>LdapQuotaWriteback</namespace>

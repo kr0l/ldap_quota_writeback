@@ -26,11 +26,12 @@ Kontingent-Feld eingestellt ist. LDAP bleibt die Quelle, und der Abgleich
 
 ## Wann zurückgeschrieben wird (Sicherheit)
 
-Nur wenn ein **angemeldeter Admin oder Gruppenadmin** die Quota **eines anderen
-Kontos** ändert (Weboberfläche oder Provisioning-API), oder per
-`occ ldap-quota:set`. Alles andere wird ignoriert:
+Nur wenn ein **angemeldeter Admin oder Gruppenadmin** eine Quota in der
+**Benutzerverwaltung** ändert (Weboberfläche oder Provisioning-API, also
+`/ocs/v…/cloud/users/…`), auch am eigenen Konto, oder per `occ ldap-quota:set`.
+Alles andere wird ignoriert:
 
-- der LDAP-Abgleich und Anmeldungen (kein Admin angemeldet bzw. das Konto selbst),
+- der LDAP-Abgleich (Cron) und Anmeldungen,
 - Apps, die Quotas automatisch setzen (z. B. Quota-Zuordnungen bei SAML/OpenID-Login),
 - lokale Benutzer (nicht aus LDAP),
 - ungültige Werte.
@@ -44,8 +45,6 @@ Weitere Eigenschaften:
 - Fehler (z. B. LDAP nicht erreichbar) landen im Nextcloud-Log (App
   `ldap_quota_writeback`). Die Quota-Änderung in Nextcloud selbst wird nie
   blockiert; ohne LDAP-Eintrag setzt der nächste Abgleich sie aber zurück.
-- Die eigene Quota als Admin: per `occ ldap-quota:set` (die Oberfläche schreibt
-  Änderungen am eigenen Konto bewusst nicht zurück).
 - Gruppenadmins können – wie bisher in Nextcloud – Quotas ihrer Mitglieder
   setzen, jetzt eben dauerhaft.
 
